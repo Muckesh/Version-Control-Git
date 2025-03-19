@@ -8,3 +8,11 @@ git commit -m "Added commands text file" -> commiting the file to the local repo
 
 git branch -M main -> Renaming the default branch Master to main.
 
+git remote add origin <repo-url> -> The remote repo named [origin - default name for the main remote] is linked to the local repo.
+
+git push -u origin main -> pushes the local commits to remote repo.
+                        -> -u or --set-upstream --> it sets main as the upstream branch
+                           which defaults the future push and pull to origin(remote repo) main(branch).
+
+
+
