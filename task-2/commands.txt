@@ -1,0 +1,19 @@
+Task -2 Git commands
+
+created .gitignore file
+Added the following patterns to ignore git staging and tracking:
+*.log
+secrets.txt
+*.tmp
+/cache/
+
+git status -> it tracked public.txt, test.py and commands.txt and 
+                ignored the file and dir patterns included in .gitignore file like /cache/sample.txt, data.log, bin.tmp
+                    secrets.txt.
+
+git add . -> it staged commands.txt, public.txt, .gitignore and test.py.
+
+git commit -m "Testing .gitignore - The log, tmp files are ignored and the directory /cache/ is also ignored" 
+    -> commited the files to the local repo.
+
+git rm --cached <filename> -> to remove the file that is already staged before adding it in the .gitignore file.

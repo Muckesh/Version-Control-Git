@@ -2,3 +2,4 @@
 secrets.txt
 *.tmp
 /cache/
+# !keep-this.txt --> ignores all except this one
