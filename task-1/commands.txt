@@ -15,4 +15,16 @@ git push -u origin main -> pushes the local commits to remote repo.
                            which defaults the future push and pull to origin(remote repo) main(branch).
 
 
+git status -> to check the current state of working dir and staging area.
 
+git checkout -b feature-branch -> Creates a new branch named feature-branch and gets switched to the feature-branch branch.
+
+git push origin feature-branch -> to push the changes to the remote repo origin feature-branch.
+
+git checkout main -> switches back to the main branch from the feature-branch
+
+git merge feature-branch -> merges the feature branch with the main branch.
+
+git log --oneline -> gives the one line summary of commit history.
+
+git branch -d feature-branch -> To delete the feature-branch after merging.
