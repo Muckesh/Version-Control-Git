@@ -1,0 +1,3 @@
+Git Task 1 Commands:
+
+git init -> To initialize a git repository on the working directory.
