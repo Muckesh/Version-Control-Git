@@ -1,0 +1,31 @@
+Task - 3
+Undoing changes and Reverting commits in GIT
+
+echo "Adding new line to the file." >> file.txt
+
+git status -> to check the current state of the working dir
+
+git restore <filename> (or) . -> to undo the changes of unstaged files.
+
+git add . -> to stage the modified files.
+
+git restore --staged <filename> (or) . -> when the files are staged, this command unstages the files,
+                                        and then the git restore <filename> command is used to restore the file changes.
+
+git commit -m "Add new line" -> to save the changes to the local repo.
+
+git log --oneline -> to view the commit history
+
+git reset --soft HEAD~1 -> this command will move HEAD to the previous commit but the changes will be staged.
+                            so, you have to unstage and then restore the files.
+
+git reset --mixed HEAD~1 -> this will move the HEAD to previous commit and unstages the files.
+                            so, you have to use the restore command to undo the changes.
+
+git reset --hard HEAD~1 -> this will move the head to the previous commit and completely deletes the existing commits and changes.
+                            the file will be restored without any unstaging.
+                            However, this should be used cautiously.
+
+git revert HEAD or <commit-hash> -> this is a safer way to undo the commited changes, 
+                                    as it will create a new commit that undoes the previous commit.
+                                    it keeps the commit history clean
