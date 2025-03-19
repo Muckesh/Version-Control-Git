@@ -1,3 +1,10 @@
 Git Task 1 Commands:
 
 git init -> To initialize a git repository on the working directory.
+
+git add . -> To add all the files in the working directory to Staging Area (Index Tree).
+
+git commit -m "Added commands text file" -> commiting the file to the local repository.
+
+git branch -M main -> Renaming the default branch Master to main.
+
