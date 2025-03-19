@@ -1,0 +1,4 @@
+*.log
+secrets.txt
+*.tmp
+/cache/
