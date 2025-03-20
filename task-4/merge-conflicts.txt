@@ -1,4 +1,4 @@
 Hello world
 In this file, I am simulating and resolving merge conflicts.
 
-This is branch1 change.
+This is branch1 change. merged with ,this is branch2 change.
