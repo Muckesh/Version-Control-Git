@@ -41,3 +41,4 @@ squash -> it combines the commits with the previous one.
 drop -> it deletes a commit
         it raises conflicts when an in between commit is deleted.
 
+fixup -> similar to squash but discards the commit changes.
