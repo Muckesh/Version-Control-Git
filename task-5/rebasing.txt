@@ -5,3 +5,4 @@ it supports,
 - squash -combining multiple commits into one.
 - reorder commits
 - edit commit msg.
+- remove unwanted commits.
