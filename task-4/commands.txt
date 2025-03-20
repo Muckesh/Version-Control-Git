@@ -29,7 +29,7 @@ Merging branch2 into branch1
 
 review the changes and modify the text file manually.
 
-git diff
+git diff -> to check differences in the file/branch/commit hash/ HEAD for the conflicting changes.
 
 git status -> check the current status of the working dir.
 
