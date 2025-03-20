@@ -34,7 +34,7 @@ in case of conflicts you have to run,
 git add .
 git rebase --continue -> to continue after resolving conflicts.
 
-git rebase --abort -> to abort the rebase
+git rebase --abort -> to abort/cancel the rebase
 
 squash -> it combines the commits with the previous one.
 
