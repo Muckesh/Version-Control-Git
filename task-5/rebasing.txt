@@ -1,0 +1,5 @@
+This is a test file to learn git interactive rebasing.
+
+interactive rebase helps to modify commit history.
+it supports,
+- squash -combining multiple commits into one.
