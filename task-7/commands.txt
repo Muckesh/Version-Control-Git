@@ -1,0 +1,42 @@
+Task 7
+Cherrypicking commits between branches
+
+cherry-pick helps to selectively apply commits from one branch to another.
+
+syntax:
+
+git cherry-pick <commit-hash> -> it applies the selected commit to the desired branch.
+
+git log --oneline -> gives the oneline summary of commit history along with commit-hash.
+output:
+da5f00f (origin/cherry-pick, cherry-pick) cherrypick test 4
+ed6e3d4 cherrypick test 3
+4a1c9c0 update py file from cherry-pick branch
+6eb3129 cherrypick test 2
+
+git checkout -b cherry-pick -> creates and switches to branch named cherry-pick.
+
+make commits in the cherry-pick branch.
+
+git checkout main -> switche to main branch
+
+git log --oneline cherry-pick -> get the commit-hash of cherry-pick branch that we need to apply to the main branch.
+
+git cherry-pick <commit-hash> -> it applies the commit changes to the main branch.
+
+in case of conflicts, solve the conflicts manually and run,
+git add . && git cherry-pick --continue -> to continue the cherrypicking.
+
+git cherry-pick --abort -> cancels the cherrypick.
+
+To cherrypick multiple commits:
+git cherry-pick commit1 commit2 commit3 -> this applies commits in sequence.
+
+To cherrypick a range of commits:
+git cherry-pick start-commit^..end-commit -> this is applies all commits between the start and end which are inclusive.
+
+To verify cherrypick commit :
+git log --oneline.
+  
+
+
