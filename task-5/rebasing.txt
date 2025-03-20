@@ -6,3 +6,8 @@ it supports,
 - reorder commits
 - edit commit msg.
 - remove unwanted commits.
+- test commit 1 for interactive rebasing.
+- test commit 2 for interactive rebasing.
+- test commit 3 for interactive rebasing.
+- test 1
+- test 2
