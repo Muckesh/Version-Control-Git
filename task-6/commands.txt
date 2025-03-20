@@ -13,16 +13,18 @@ added footer.html in the stash-demo branch
 updated the footer file
 
 stashed the updated footer file
-git stash
+git stash -> temporarily saves the unstaged changes.
+        we can checkout to another branch only after stashing if we have a unstaged file.
 
-then checked out to main branch
+then check out to main branch
+git checkout main
 
-git stash list
+git stash list -> it lists all the stashes
 
-git stash pop
+git stash pop -> it applies the last stashed changes and removes them from the stash list.
 
-git stash apply <stash-id>
+git stash apply <stash-id> -> it applies a specific stash and unlike pop, this does not remove the stash.
 
-git stash drop <stash-id>
+git stash drop <stash-id> -> it deletes a specific stash.
 
-git stash clear
+git stash clear -> clears all the stashes.
