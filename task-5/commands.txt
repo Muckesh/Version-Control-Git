@@ -1,0 +1,38 @@
+Task 5
+Interactive rebasing for clean commit history
+
+it helps to modify commit history interactively
+
+git rebase -i 
+
+we can,
+ - squash -> combining multiple commits into single commit.
+ - reorder commits
+ - edit commit msgs
+ - remove unwanted commits
+
+ create a text file "rebasing.txt"
+ make multiple commits to the file.
+
+ git log --oneline -> to check commit history
+
+ git rebase -i HEAD~n -> to perform interactive rebase for the last n commits
+
+ interactive editor options:
+
+ pick -> keep the commit unmodified
+
+ reword -> to edit the commit messages
+
+ edit -> to modify the commit before continuing the rebase.
+ after changing pick to edit, git stops the commit.
+ then we have to run : git add . to stage the changes
+                -> git commit --amend -> to make changes in the commit.
+                -> git rebase --continue 
+
+in case of conflicts you have to run,
+git add .
+git rebase --continue
+
+git rebase --abort -> to abort the rebase
+
