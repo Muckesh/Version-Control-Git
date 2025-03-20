@@ -1,0 +1,38 @@
+Task - 4 
+Simulating and Resolving merge conflicts
+
+echo "Hello world" > merge-conflicts.txt
+
+git add . && git commit -m "merge conflict file" 
+git branch branch1
+git branch branch2
+            -> creating 2 branches named branch1 and branch2 
+            with the merge-conflict text file commit.
+
+git checkout branch1 -> switching to branch1
+
+echo "This is branch1 change" >> merge-conflicts.txt -> updating the text file from branch1.
+
+git add . && git commit -m "Updated file in branch1" -> staging and commiting to branch1
+
+git checkout branch2 -> switching to branch2
+
+echo "This is branch2 change" >> merge-conflicts.txt -> updating the text file from branch2.
+
+git add . && git commit -m "Updated file in branch2" -> staging and commiting to branch2.
+
+git checkout branch1 -> switching to branch1
+
+Merging branch2 into branch1
+ git merge branch2 -> This will create a merge conflict
+                    this has to be resolved manually.
+
+review the changes and modify the text file manually.
+
+git diff
+
+git status -> check the current status of the working dir.
+
+git add . && git commit -m "Resolved merge conflicts between branch1 and branch2." -> This will stage the updated file and create a new commit in the branch1.
+
+git log --oneline -> to check the commmit history.
