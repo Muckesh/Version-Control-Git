@@ -2,3 +2,5 @@ Hello world
 In this file, I am simulating and resolving merge conflicts.
 
 This is branch1 change. merged with ,this is branch2 change.
+
+this is to check git diff for checking conflicting changes [branch1].
