@@ -32,7 +32,12 @@ we can,
 
 in case of conflicts you have to run,
 git add .
-git rebase --continue
+git rebase --continue -> to continue after resolving conflicts.
 
 git rebase --abort -> to abort the rebase
+
+squash -> it combines the commits with the previous one.
+
+drop -> it deletes a commit
+        it raises conflicts when an in between commit is deleted.
 
