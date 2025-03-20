@@ -28,3 +28,5 @@ git stash apply <stash-id> -> it applies a specific stash and unlike pop, this d
 git stash drop <stash-id> -> it deletes a specific stash.
 
 git stash clear -> clears all the stashes.
+
+we can apply the stash from one branch to the other branch.
