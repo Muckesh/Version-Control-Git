@@ -14,3 +14,36 @@ link local repo to remote repo (on github)
 git remote add origin https://github.com/Muckesh/Version-Control-Git.git
 
 git remote -v -> to verify remote link.
+
+git add . && git commit -m "initial commit" -> staging and pushing local changes to local repo.
+
+git push -u origin main -> first time push creates a 'main' branch on github with a remote repo named origin.
+                        '-u' sets the upstream branch to main.
+
+git checkout -b feature-branch -> creates a new branch named feature-branch
+
+modify or add files in the feature-branch.
+
+git add . && git commit -m "added new feature" -> stage and commit the changes to the local repo
+
+git push origin feature-branch -> pushes the branch to the remote repo.
+
+open pull request (PR) on github
+go to github repo
+click "compare and pull request"
+
+add a desc and click "Create pull request"
+
+review the code -> team members can comment, suggest changes and approve before merging.
+
+Merge the feature branch by "Merge Pull Request.
+
+After approval click Merge Pull Request on github
+
+Now locally pull the latest changes.
+
+git checkout main
+
+git pull origin main -> pull the latest changes from remote repo origin  main to the local repo main branch. 
+
+git branch -d new-feature -> delete branch locally.
