@@ -1,0 +1,16 @@
+Task 9
+Working with Remote Repositories and Collaboration
+
+remote repo -> it is a version of the project hosted on platform like github, gitlab or bitbucket
+                allowing multiple developers to Collaborate.
+
+git init -> initializes a local repo.
+
+go to github and create a Repository
+
+copy the remote url
+
+link local repo to remote repo (on github)
+git remote add origin https://github.com/Muckesh/Version-Control-Git.git
+
+git remote -v -> to verify remote link.
