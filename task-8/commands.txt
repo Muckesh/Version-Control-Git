@@ -1,0 +1,186 @@
+Task 8
+
+Using GIt Hooks fot automanted checks
+
+Local repo --------------------------------------------------------------------> Remote repo
+
+working dir --------> staged changes ------------> commit --------> push -----------> repo update
+                                            |                  |              |
+                                        pre-commit           pre-push        pre-receive    
+Git Hooks -> they are the scripts that Git executes autommatically before or after 
+            certain events/actions like commits, merges, pushes.
+    they are useful for enforcing code quality, running automated testa or preventing bad commits.
+Types:
+
+1. Client side Hooks -> it runs on local machine. Eg : pre-commit, commit-msg, pre-push, post-commit.
+
+2. Server side Hooks -> it runs on remote repos. Eg: pre-receive, update.
+
+pre-commit - runs before a commit is finalized. it can be used to run linter or unit test.
+
+linter -> it is a tool used to check code for syntax errors, style inconsistencies and potential bugs before commiting it.
+Eslint -> linter for Js.
+
+unit test -> small automated test that checks if a specific fn or piece of code works correctly
+         used to catch bugs early before deployment.
+Jest -> unit test for Js.
+
+pre-commit (shell script):
+
+"""
+#!/bin/bash
+
+echo "🔍 Running ESLint..."
+files=$(git diff --cached --name-only --diff-filter=d | grep '\.js$')
+
+if [ -z "$files" ]; then
+    echo "✅ No JavaScript files to lint."
+else
+    npx eslint $files
+    if [ $? -ne 0 ]; then
+        echo "❌ ESLint errors detected! Fix them before committing."
+        exit 1
+    fi
+    echo "✅ ESLint passed!"
+fi
+"""
+
+cd .git/hooks
+create pre-commit file.
+chmod +x pre-commit  -> Make the script executable.
+
+npm install --save-dev eslint jest
+npx eslint --init  # to set up ESLint before
+
+package.json:
+"scripts": {
+  "test": "jest"
+}
+
+
+hello.js:
+console.log("Hello world")
+
+function sayHello(){
+    console.log("Hello" -> syntax error
+
+git add hello.js
+$ git commit -m "Fixing lint errors"
+🔍 Running ESLint...
+
+D:\Presidio\Version-Control-Git\task-8\hello.js
+  9:1  error  Parsing error: Unexpected token }
+
+✖ 1 problem (1 error, 0 warnings)
+
+❌ ESLint errors detected! Fix them before committing.
+
+
+hello.js:
+console.log("Hello world")
+
+function sayHello(){
+    console.log("Hello")
+ } -> fixed syntax error
+
+$ git add hello.js
+
+$ git commit -m "Fixed errors and passing ESlint"
+🔍 Running ESLint...
+Warning: React version not specified in eslint-plugin-react settings. See https://github.com/jsx-eslint/eslint-plugin-react#configuration .
+✅ ESLint passed!
+✅ All checks passed! Proceeding with commit.
+[main 0051235] Fixed errors and passing ESlint
+ 1 file changed, 4 insertions(+)
+
+git push
+
+pre-push (shell script):
+#!/bin/bash
+
+echo "🛠 Running Jest unit tests..."
+npx jest --bail
+if [ $? -ne 0 ]; then
+    echo "❌ Tests failed! Fix them before committing."
+    exit 1
+fi
+
+echo "✅ Tests passed! Proceeding with commit."
+
+
+echo "✅ All checks passed! Proceeding with commit."
+
+
+sub.js:
+function sub(a, b) {
+    return a - b; -> intentional error of '-'
+}
+module.exports = sub;
+
+sub.test.js:
+const sub = require('./sub');
+
+test('subs 2 - 3 to equal -1', () => {
+    expect(sub(2, 3)).toBe(-1);
+});
+
+$ git add sub.js sub.test.js
+$ git commit -m "Testing pre-push by running jest"
+$ git push
+
+🛠 Running Jest unit tests...
+FAIL task-8/sub.test.js
+  ● sub 2 - 3 to equal -1
+
+    ReferenceError: sub is not defined
+
+      2 |
+      3 | test('sub 2 - 3 to equal -1', () => {
+    > 4 |     expect(sub(2, 3)).toBe(-1);
+        |     ^
+      5 | });
+      6 |
+
+      at Object.expect (task-8/sub.test.js:4:5)
+
+Test Suites: 1 failed, 1 of 2 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.53 s, estimated 1 s
+Ran all test suites.
+❌ Tests failed! Fix them before committing.
+error: failed to push some refs to 'https://github.com/Muckesh/Version-Control-Git.git'
+
+
+sub.js:
+function sub(a, b) {
+    return a + b; -> Fixed error of '-' to '+
+}
+module.exports = sub;
+
+git add sub.js 
+
+$ git commit -m "Fixed jest erorrs and pre-push is tested
+
+$ git push
+
+🛠 Running Jest unit tests...
+PASS task-8/sub.test.js
+PASS task-8/add.test.js
+
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.64 s, estimated 1 s
+Ran all test suites.
+✅ Tests passed! Proceeding with commit.
+✅ All checks passed! Proceeding with commit.
+Enumerating objects: 15, done.
+Counting objects: 100% (15/15), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (13/13), done.
+Writing objects: 100% (13/13), 1.23 KiB | 1.23 MiB/s, done.
+Total 13 (delta 6), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (6/6), completed with 2 local objects.
+To https://github.com/Muckesh/Version-Control-Git.git
+   1babc02..e488956  main -> main
