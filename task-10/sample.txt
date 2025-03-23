@@ -6,3 +6,5 @@ Feature A change 1
 Feature A change 2
 
 Feature A change 3
+
+Feature A change 4
