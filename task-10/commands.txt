@@ -1,0 +1,84 @@
+Task 10
+
+Comprehensive workflow with Forced Pushes and Recover commits and multibranching.
+
+forced Push
+git push --force -> it is used to overwrite the remote repo's history with local changes even if it conflicts with remote commits.
+
+this is used after,
+
+ - rewriting commit history with -> git rebase. 
+ - undoing commits -> git reset --hard
+ - squashing or amending commits -> git commit --amend.
+
+Why is it risky?
+
+It erases commits from the remote repository.
+If someone else has already pulled the remote changes, their history will be out of sync.
+
+Safe alternative: Use git push --force-with-lease, which ensures you don’t overwrite others' commits.
+
+
+git reflog -> to recover lost commits.
+        Even if commits disappear due to a forced push, Git doesn’t delete them immediately. They can often be recovered using git reflog.
+
+git reflog:
+It keeps track of every action you perform in your local repository.
+Even if a commit is no longer referenced in a branch, git reflog can help you find it.
+
+ Recovery process:
+
+1. Run git reflog to view all recent Git actions.
+2. Identify the lost commit’s hash.
+3. Use git checkout <commit-hash> to temporarily view it.
+4. Use git branch <new-branch-name> <commit-hash> to restore it.
+
+# Create multiple branches
+
+git branch dev
+git branch feature-a
+git branch bugfix-1
+
+
+Perform an Interactive Rebase & Force Push
+git checkout feature-a
+
+echo "Feature A - Change 1" >> file.txt
+git commit -am "Feature A: Change 1"
+
+echo "Feature A - Change 2" >> file.txt
+git commit -am "Feature A: Change 2"
+
+Rebase interactively to squash commits
+
+git rebase -i HEAD~2
+
+Force push due to history rewrite
+
+git push --force
+
+Recover a Lost Commit After a Bad Force Push
+
+if a developer had already pulled your original commits, but you overwrote them with a force push. Now, you realize you need to recover the lost commits.
+
+Find the lost commit using : git reflog
+
+1e1dd32 (HEAD -> feature-a, origin/feature-a) HEAD@{0}: rebase (finish): returning to refs/heads/feature-a
+1e1dd32 (HEAD -> feature-a, origin/feature-a) HEAD@{1}: rebase (squash): This is a combination of change 3 and 4.
+d31bbf8 HEAD@{2}: rebase (start): checkout HEAD~2
+64b5bf9 HEAD@{3}: commit: Feature A change 4
+d31bbf8 HEAD@{4}: commit: Feature A change 3
+
+$ git checkout 64b5bf9 -> Restore the lost commit
+
+$ git switch -c feature-a4 -> Create a new branch to save it
+
+$ git push origin feature-a4 -> Push it back to the remote repository
+
+When Should You Use git push --force?
+ After an interactive rebase (to clean up commits).
+ After a reset (to remove accidental commits).
+ Never use it on shared branches like main or dev!
+
+ Safer Alternative: git push --force-with-lease
+ ->  This only forces the push if no one else has updated the branch remotely, preventing accidental overwrites.
